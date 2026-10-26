@@ -1,0 +1,45 @@
+:root {
+  --main-bg-color: #303030;
+  --text-color: #c7c6c6;
+}
+
+main {
+  min-height: 100dvh;
+
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.75rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+}
+
+.countdown-list {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+}
+
+.countdown-digits {
+  min-height: 18px;
+  overflow: hidden;
+  display: flex;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.digit {
+  display: inline-block;
+  line-height: 1;
+}
