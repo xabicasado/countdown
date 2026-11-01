@@ -3,12 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Countdown</title>
+    <title data-i18n="title">Countdown</title>
     <meta name="description" content="It's the final one!" />
     <meta
       name="author"
       content="xabicasado <xabicasadonieto@gmail.com> (https://github.com/xabicasado)"
     />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,69 +43,52 @@
       src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/CustomEase.min.js"
       defer
     ></script>
+    <script src="./temporal-polifyll.js" defer></script>
+    <script src="./i18n.js" defer></script>
     <script src="./main.js" defer></script>
   </head>
 
   <body>
+    <header>
+      <div class="color-picker">
+        <fieldset>
+          <legend class="visually-hidden" data-i18n="colorPicker"></legend>
+
+          <label for="light" data-i18n="light" class="visually-hidden"></label>
+          <input type="radio" name="theme" id="light" checked />
+
+          <label for="dark" data-i18n="dark" class="visually-hidden"></label>
+          <input type="radio" id="dark" name="theme" />
+        </fieldset>
+      </div>
+
+      <div class="lang-switch">
+        <label
+          for="lang-select"
+          data-i18n="langSwitch"
+          class="visually-hidden"
+        ></label>
+        <select id="lang-select" class="lang-select">
+          <option value="en" data-i18n="en"></option>
+          <option value="es" data-i18n="es"></option>
+          <option value="eu" data-i18n="eu"></option>
+        </select>
+      </div>
+    </header>
+
     <main>
-      <section id="countdown" aria-labelledby="countdown-title">
-        <ul class="countdown-list">
-          <li class="countdown-unit" id="years-unit">
-            <span class="countdown-digits" id="years-digits">
-              <span class="digit">0</span>
-              <span class="digit">0</span>
-            </span>
-            <span class="countdown-label">years</span>
-          </li>
+      <section id="countdown">
+        <ul class="countdown-list" id="countdown-list"></ul>
 
-          <li class="countdown-unit" id="months-unit">
-            <span class="countdown-digits" id="months-digits">
+        <template id="unit-template">
+          <li class="countdown-unit">
+            <span class="countdown-digits">
               <span class="digit">0</span>
               <span class="digit">0</span>
             </span>
-            <span class="countdown-label">months</span>
+            <span class="countdown-label"></span>
           </li>
-
-          <li class="countdown-unit" id="weeks-unit">
-            <span class="countdown-digits" id="weeks-digits">
-              <span class="digit">0</span>
-              <span class="digit">0</span>
-            </span>
-            <span class="countdown-label">weeks</span>
-          </li>
-
-          <li class="countdown-unit" id="days-unit">
-            <span class="countdown-digits" id="days-digits">
-              <span class="digit">0</span>
-              <span class="digit">0</span>
-            </span>
-            <span class="countdown-label">days</span>
-          </li>
-
-          <li class="countdown-unit" id="hours-unit">
-            <span class="countdown-digits" id="hours-digits">
-              <span class="digit">0</span>
-              <span class="digit">0</span>
-            </span>
-            <span class="countdown-label">hours</span>
-          </li>
-
-          <li class="countdown-unit" id="minutes-unit">
-            <span class="countdown-digits" id="minutes-digits">
-              <span class="digit">0</span>
-              <span class="digit">0</span>
-            </span>
-            <span class="countdown-label">minutes</span>
-          </li>
-
-          <li class="countdown-unit" id="seconds-unit">
-            <span class="countdown-digits" id="seconds-digits">
-              <span class="digit">0</span>
-              <span class="digit">0</span>
-            </span>
-            <span class="countdown-label">seconds</span>
-          </li>
-        </ul>
+        </template>
       </section>
     </main>
   </body>

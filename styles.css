@@ -1,19 +1,127 @@
 :root {
+  --main-bg-color: #c7c6c6;
+  --text-color: #303030;
+}
+
+:root[data-theme="dark"] {
   --main-bg-color: #303030;
   --text-color: #c7c6c6;
   color-scheme: dark;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --main-bg-color: #303030;
+    --text-color: #c7c6c6;
+    color-scheme: dark;
+  }
+}
+
 html {
   font-size: clamp(100%, 1.5vw + 0.5rem, 22px);
-  scroll-behavior: smooth;
 }
 
 body {
   font-family: "Silkscreen", sans-serif;
   background-color: var(--main-bg-color);
   color: var(--text-color);
-  min-height: 100dvh;
+  transition: 0.3s linear;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  z-index: 10;
+}
+
+.color-picker {
+  grid-column: 2;
+  opacity: 0.8;
+}
+
+.color-picker > fieldset {
+  border: 0;
+  display: flex;
+  gap: 2rem;
+  width: fit-content;
+  background: #7c6d80;
+  padding: 0.5rem 1.5rem;
+  margin-inline: auto;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.color-picker input[type="radio"] {
+  cursor: pointer;
+  appearance: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  outline: 2px solid var(--radio-color, currentColor);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+.color-picker input[type="radio"]:checked {
+  background-color: var(--radio-color);
+}
+
+.color-picker input[type="radio"]#light {
+  --radio-color: #c7c6c6;
+}
+
+.color-picker input[type="radio"]#dark {
+  --radio-color: #303030;
+}
+
+:root:has(#light:checked) {
+  --main-bg-color: #c7c6c6;
+  --text-color: #303030;
+  color-scheme: light;
+}
+
+:root:has(#dark:checked) {
+  --main-bg-color: #303030;
+  --text-color: #c7c6c6;
+  color-scheme: dark;
+}
+
+.lang-switch {
+  grid-column: 3;
+  justify-self: end;
+}
+
+.lang-select {
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-color);
+  border: none;
+  padding: 0 1rem;
+  font-size: 0.75rem;
+  outline: none;
+  opacity: 0.8;
+}
+
+.lang-select option {
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+}
+
+.lang-select:focus-visible {
+  outline: none;
 }
 
 main {
@@ -22,6 +130,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .countdown-list {
@@ -30,6 +139,7 @@ main {
   justify-content: center;
   align-items: center;
   column-gap: clamp(0.5rem, 2.2vw, 1.25rem);
+  flex-wrap: wrap;
   list-style: none;
 }
 
